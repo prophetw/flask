@@ -23,3 +23,5 @@ flask
     flask-uwsgi-nginx.conf nginx 配置
     uwsgi.ini uwsgi配置
     mysite.sock sock配置
+# CORS
+    https://flask-cors.readthedocs.io/en/latest/

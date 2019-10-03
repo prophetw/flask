@@ -1,4 +1,6 @@
 from flask import Flask, escape, url_for, request, render_template, make_response, abort
+from flask_cors import CORS, cross_origin
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -14,6 +16,7 @@ def hello(name=None):
     return render_template('hello.html', name=username)
 
 @app.route('/login', methods=['GET', 'POST'])
+@cross_origin()
 def login():
     if request.method == 'POST':
         return 'start login in'
