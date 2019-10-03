@@ -18,4 +18,8 @@ flask
     flask run
 # 部署服务器
     https://dormousehole.readthedocs.io/en/latest/deploying/uwsgi.html#id1
-    wsgi uwsgi
+    uwsgi uwsgi.ini
+    supervisor 作为自启动
+    flask-uwsgi-nginx.conf nginx 配置
+    uwsgi.ini uwsgi配置
+    mysite.sock sock配置
