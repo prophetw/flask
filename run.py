@@ -1,6 +1,6 @@
 from flask import Flask, escape, url_for, request, render_template, make_response, abort
 from flask_cors import CORS, cross_origin
-
+import os;
 app = Flask(__name__)
 
 @app.route('/')
@@ -24,8 +24,12 @@ def login():
         return 'show login form'
 
 @app.route('/send-email', methods=['POST'])
+@cross_origin()
 def send_email():
     if request.method == 'POST':
+        response = os.system('echo "hello pi" | mutt -s "api send email" 532300391@qq.com')
+        return 'send email via python'
+    else:
         return 'sendEmail'
 
 @app.route('/projects/')
