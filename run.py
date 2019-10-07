@@ -23,7 +23,7 @@ def login():
     else:
         return 'show login form'
 
-@app.route('/send-email', methods=['POST'])
+@app.route('/send-email')
 @cross_origin()
 def send_email():
     if request.method == 'POST':
