@@ -31,3 +31,7 @@ flask
     https://pip.pypa.io/en/stable/reference/pip_freeze/
     pip freeze > requirements.txt
     pip install -r requirements.txt
+
+# box python SDK
+    http://opensource.box.com/box-python-sdk/
+    https://developer.box.com/reference

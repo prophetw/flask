@@ -1,11 +1,31 @@
-from flask import Flask, escape, url_for, request, render_template, make_response, abort
+from flask import Flask, escape, url_for, request, render_template, make_response, abort, jsonify
 from flask_cors import CORS, cross_origin
-import os;
+import os
+from boxsdk import OAuth2, Client
+import json
 app = Flask(__name__)
+
+# auth = OAuth2(
+#     client_id='x129xwoaqly6cz0teyo4so42fa86st5a',
+#     client_secret='6prpdUipUNGDRzEwnKOpe5IEVa81TMBu',
+#     access_token='uU5tvzFI1qMEAmz43Dq0wA87EE9jG8Hj'
+# )
+
+auth = OAuth2(
+    client_id='glootspi6ppu7rto2vl1o7pj72a9wel8',
+    client_secret='6prpdUipUNGDRzEwnKOpe5IEVa81TMBu',
+    access_token='2b5Eog2hKV5A3AWLwWU5tx1pO9YS9G8R'
+)
+client = Client(auth)
+user = client.user().get()
+root_folder = client.folder(folder_id='0')
+# shared_folder = root_folder.create_subfolder('shared_folder')
+uploaded_file = root_folder.upload('./2.pdf')
+# shared_link = shared_folder.get_shared_link()
 
 @app.route('/')
 def index():
-    resp = make_response(render_template('hello.html'))
+    resp = make_response(render_template('hello.html', user=user))
     resp.set_cookie('username', 'the username')
     return resp
 
@@ -56,11 +76,8 @@ def profile(username):
 
 @app.route("/me")
 def me_api():
-
-    return {
-        "username": "321",
-        "theme": "darg"
-    }
+    # return 'sda %s' % escape(root_folder)
+    return 'sda %s'
 
 with app.test_request_context():
     print(url_for('static', filename='style.css'))
